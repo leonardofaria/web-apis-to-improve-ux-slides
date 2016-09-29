@@ -1,0 +1,503 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+		<link rel="stylesheet" href="css/style.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/github.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>Web APIs to improve User Experience</h1>
+          <h3 class="primary">Leonardo Faria</h3>
+        </section>
+
+        <section>
+          <h1 class="primary">Can I use</h1>
+          <h3>Shows compatibility tables for support of HTML5, CSS3, JS and other technologies in various browsers.</h3>
+          <h3><a href="http://caniuse.com">caniuse.com</a></h3>
+				</section>
+
+				<!-- feature #1 -->
+        <section>
+          <h1>Geolocation</h1>
+
+          <h3>Fetches latitude and longitude</h3>
+
+          <p>
+          	<span class="primary">When to use?</span><br/>
+          	Show information based on location
+          </p>
+        </section>
+
+        <section>
+        	<h1>Geolocation</h1>
+
+          <pre class="language-javascript"><code>
+  var info = document.getElementById('info');
+
+  navigator.geolocation.getCurrentPosition(function(position) {
+    var lat = position.coords.latitude;
+    var lon = position.coords.longitude;
+
+    info.innerHTML = 'Latitude: ' + lat + ' - longitude: ' + lon;
+  });
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Geolocation</h1>
+
+          <img src="img/dog.gif">
+
+          <p>
+            <small><a href="https://leonardofaria.github.io/web-apis-to-improve-ux/geolocation.html">Live demo</a></small>
+          </p>
+        </section>
+
+        <section>
+        	<h1>Geolocation</h1>
+
+        	<table class="browser-support">
+        		<tr>
+        			<td><img src="img/chrome.png"></td>
+        			<td><img src="img/safari.png"></td>
+        			<td><img src="img/firefox.png"></td>
+        			<td><img src="img/internet-explorer.png"></td>
+        		</tr>
+        		<tr>
+        			<td>Chrome 10</td>
+        			<td>Safari 5</td>
+        			<td>Firefox 3.5</td>
+        			<td>IE 9</td>
+        		</tr>
+        	</table>
+
+					<p>
+						<small><a href="http://caniuse.com/#feat=geolocation">caniuse.com/#feat=geolocation</a></small>
+					</p>
+        </section>
+				<!-- feature #1 end -->
+
+        <!-- feature #2 -->
+        <section>
+          <h1>Local Storage</h1>
+
+          <h3>Stores key-value pair data in the client side</h3>
+
+          <p>
+            <span class="primary">When to use?</span><br/>
+            Store personal preferences
+          </p>
+        </section>
+
+        <section>
+          <h1>Local Storage</h1>
+
+          <pre class="language-javascript"><code>
+  localStorage.setItem('Name', 'Leonardo');
+  localStorage.setItem('Job', 'Developer');
+
+  console.log(localStorage.length);
+  console.log(localStorage.getItem('Name'));
+
+  localStorage.clear();
+
+  console.log(localStorage.length);
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Local Storage</h1>
+
+          <img src="img/dog.gif">
+
+          <p>
+            <small><a href="https://leonardofaria.github.io/web-apis-to-improve-ux/localstorage.html">Live demo</a></small>
+          </p>
+        </section>
+
+        <section>
+          <h1>Local Storage</h1>
+
+          <table class="browser-support">
+            <tr>
+              <td><img src="img/chrome.png"></td>
+              <td><img src="img/safari.png"></td>
+              <td><img src="img/firefox.png"></td>
+              <td><img src="img/internet-explorer.png"></td>
+            </tr>
+            <tr>
+              <td>Chrome 10</td>
+              <td>Safari 4</td>
+              <td>Firefox 3.5</td>
+              <td>IE 8</td>
+            </tr>
+          </table>
+
+          <p>
+            <small><a href="http://caniuse.com/#feat=namevalue-storage">caniuse.com/#namevalue-storage</a></small>
+          </p>
+        </section>
+        <!-- feature #2 end -->
+
+        <!-- feature #3 -->
+        <section>
+          <h1>Camera</h1>
+
+          <h3>Allows applications to manage the camera of the device</h3>
+
+          <p>
+            <span class="primary">When to use?</span><br/>
+            Take photographs or record videos
+          </p>
+        </section>
+
+        <section>
+          <h1>Camera</h1>
+
+          <pre class="language-javascript"><code>
+  var video = document.getElementById('video');
+  var canvas = document.getElementById('canvas');
+  var context = canvas.getContext('2d');
+  var button = document.getElementById('snap');
+
+  navigator.mediaDevices.getUserMedia({video: true}).then(function(stream){
+    video.src = window.URL.createObjectURL(stream);
+    video.play();
+  });
+
+  button.addEventListener('click', function() {
+    context.drawImage(video, 0, 0, 640, 480);
+  });
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Camera</h1>
+
+          <img src="img/dog.gif">
+
+          <p>
+            <small><a href="https://leonardofaria.github.io/web-apis-to-improve-ux/camera.html">Live demo</a></small>
+          </p>
+        </section>
+
+        <section>
+          <h1>Camera</h1>
+
+          <table class="browser-support">
+            <tr>
+              <td><img src="img/chrome.png"></td>
+              <td><img src="img/safari.png"></td>
+              <td><img src="img/firefox.png"></td>
+              <td><img src="img/edge.png"></td>
+            </tr>
+            <tr>
+              <td>Chrome 17</td>
+              <td>--</td>
+              <td>Firefox 17</td>
+              <td>Edge 12</td>
+            </tr>
+          </table>
+
+          <p>
+            <h1>Camera</h1>
+
+            <small><a href="http://caniuse.com/#feat=stream">caniuse.com/#stream</a></small>
+          </p>
+        </section>
+        <!-- feature #3 end -->
+
+        <!-- feature #4 -->
+        <section>
+          <h1>Page Visibility</h1>
+
+          <h3>Allows applications to manage the camera of the device</h3>
+
+          <p>
+            <span class="primary">When to use?</span><br/>
+            Take photographs or record videos
+          </p>
+        </section>
+
+        <section>
+          <h1>Page Visibility</h1>
+
+          <pre class="language-javascript"><code>
+  window.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      document.title = 'Tab is hidden';
+    } else {
+      document.title = 'Tab is focused';
+    }
+  });
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Page Visibility</h1>
+
+          <img src="img/dog.gif">
+
+          <p>
+            <small><a href="https://leonardofaria.github.io/web-apis-to-improve-ux/page_visibility.html">Live demo</a></small>
+          </p>
+        </section>
+
+        <section>
+          <h1>Page Visibility</h1>
+
+          <table class="browser-support">
+            <tr>
+              <td><img src="img/chrome.png"></td>
+              <td><img src="img/safari.png"></td>
+              <td><img src="img/firefox.png"></td>
+              <td><img src="img/internet-explorer.png"></td>
+            </tr>
+            <tr>
+              <td>Chrome 16</td>
+              <td>Safari 6.1</td>
+              <td>Firefox 10</td>
+              <td>IE 10</td>
+            </tr>
+          </table>
+
+          <p>
+            <small><a href="http://caniuse.com/#feat=pagevisibility">caniuse.com/#pagevisibility</a></small>
+          </p>
+        </section>
+        <!-- feature #4 end -->
+
+        <!-- feature #5 -->
+        <section>
+          <h1>Online State</h1>
+
+          <h3>Exposes a network connection availability information</h3>
+
+          <p>
+            <span class="primary">When to use?</span><br/>
+            Provide feedback to user
+          </p>
+        </section>
+
+        <section>
+          <h1>Online State</h1>
+
+          <pre class="language-javascript"><code>
+  var info = document.getElementById('info');
+  var status = navigator.onLine ? 'online' : 'offline';
+  info.innerHTML = status;
+
+  window.addEventListener('offline', networkStatus);
+  window.addEventListener('online', networkStatus);
+
+  function networkStatus(e) {
+    info.innerHTML = e.type;
+  }
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Online State</h1>
+
+          <img src="img/dog.gif">
+
+          <p>
+            <small><a href="https://leonardofaria.github.io/web-apis-to-improve-ux/online_state.html">Live demo</a></small>
+          </p>
+        </section>
+
+        <section>
+          <h1>Online State</h1>
+
+          <table class="browser-support">
+            <tr>
+              <td><img src="img/chrome.png"></td>
+              <td><img src="img/safari.png"></td>
+              <td><img src="img/firefox.png"></td>
+              <td><img src="img/internet-explorer.png"></td>
+            </tr>
+            <tr>
+              <td>Chrome 16</td>
+              <td>Safari 5</td>
+              <td>Firefox 41</td>
+              <td>IE 9</td>
+            </tr>
+          </table>
+
+          <p>
+            <small><a href="http://caniuse.com/#feat=online-status">caniuse.com/#online-status</a></small>
+          </p>
+        </section>
+        <!-- feature #5 end -->
+
+        <!-- feature #6 -->
+        <section>
+          <h1>Vibration</h1>
+
+          <h3>Provides access to a form of tactile feedback</h3>
+
+          <p>
+            <span class="primary">When to use?</span><br/>
+            Alert wrong data in forms
+          </p>
+        </section>
+
+        <section>
+          <h1>Vibration</h1>
+
+          <pre class="language-javascript"><code>
+  // Vibrate for 1 second
+  navigator.vibrate(1000);
+
+  // Vibrate with a pattern (vibrate, wait...)
+  navigator.vibrate([400, 300, 300, 200, 500]);
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Vibration</h1>
+
+          <img src="img/dog.gif">
+
+          <p>
+            <small><a href="https://leonardofaria.github.io/web-apis-to-improve-ux/vibration.html">Live demo</a></small>
+          </p>
+        </section>
+
+        <section>
+          <h1>Vibration</h1>
+
+          <table class="browser-support">
+            <tr>
+              <td><img src="img/chrome.png"></td>
+              <td><img src="img/safari.png"></td>
+              <td><img src="img/firefox.png"></td>
+              <td><img src="img/edge.png"></td>
+            </tr>
+            <tr>
+              <td>Chrome 30</td>
+              <td>--</td>
+              <td>Firefox 11</td>
+              <td>--</td>
+            </tr>
+          </table>
+
+          <p>
+            <small><a href="http://caniuse.com/#feat=vibration">caniuse.com/#vibration</a></small>
+          </p>
+        </section>
+        <!-- feature #6 end -->
+
+        <!-- feature #7 -->
+        <section>
+          <h1>Battery Status</h1>
+
+          <h3>Provides battery information from desktop and mobile devices</h3>
+
+          <p>
+            <span class="primary">When to use?</span><br/>
+            Alert user to charge their devices <br/>
+            Increase <a href="http://www.theverge.com/2016/5/20/11721890/uber-surge-pricing-low-battery">product prices</a> 👹
+          </p>
+        </section>
+
+        <section>
+          <h1>Battery Status</h1>
+
+          <pre class="language-javascript"><code>
+  var info = document.getElementById('info');
+  info.innerHTML = status;
+
+  navigator.getBattery().then(function(battery) {
+    info.innerHTML = battery.level * 100;
+
+    battery.addEventListener('levelchange', function() {
+     info.innerHTML = battery.level * 100;
+   });
+  });
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Battery Status</h1>
+
+          <img src="img/dog.gif">
+
+          <p>
+            <small><a href="https://leonardofaria.github.io/web-apis-to-improve-ux/battery_status.html">Live demo</a></small>
+          </p>
+        </section>
+
+        <section>
+          <h1>Battery Status</h1>
+
+          <table class="browser-support">
+            <tr>
+              <td><img src="img/chrome.png"></td>
+              <td><img src="img/safari.png"></td>
+              <td><img src="img/firefox.png"></td>
+              <td><img src="img/edge.png"></td>
+            </tr>
+            <tr>
+              <td>Chrome 38</td>
+              <td>--</td>
+              <td>Firefox 43</td>
+              <td>--</td>
+            </tr>
+          </table>
+
+          <p>
+            <small><a href="http://caniuse.com/#feat=battery-status">caniuse.com/#battery-status</a></small>
+          </p>
+        </section>
+        <!-- feature #7 end -->
+
+        <section>
+          <h1>Questions?</h1>
+          <h2>Thank you</h2>
+          <h2>😃</h2>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        history: true,
+        progress: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
